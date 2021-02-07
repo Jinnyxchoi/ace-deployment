@@ -9,7 +9,10 @@ const dbUrl = process.env.DATABASE_URL || `postgres://localhost:5432/${dbName}`;
 var client = new Sequelize(dbUrl, {
   dialect: 'postgres',
   dialectOptions: {
-    ssl: true,
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // <<<<<<< YOU NEED THIS
+    },
   },
 });
 
